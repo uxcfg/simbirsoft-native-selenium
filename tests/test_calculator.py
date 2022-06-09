@@ -1,8 +1,11 @@
+import pytest
+
 from pages import GoogleHomePage
 from pages import GoogleCalculatorPage
 from allure import step
 
 
+@pytest.mark.simbirsoft_test
 def test_calculator(browser):
     """
     Открыть страницу http://google.com
@@ -28,3 +31,5 @@ def test_calculator(browser):
 
     with step("В открывшемся калькуляторе посчитать результат выражения: «1 * 2 - 3 + 1»"):
         calc.calculate_expression()
+        calc.check_memory_result()
+        calc.check_expression_result()

@@ -1,5 +1,6 @@
 from pages import BasePage
 
+
 class Elements:
     number1 = "//div[text()='1']"
     number2 = "//div[text()='2']"
@@ -15,9 +16,6 @@ class Elements:
 
 
 class GoogleCalculatorPage(BasePage):
-    def is_load(self):
-        pass
-
     def calculate_expression(self):
         self.click(Elements.number1)
         self.click(Elements.multi)
@@ -28,5 +26,9 @@ class GoogleCalculatorPage(BasePage):
         self.click(Elements.number1)
         self.click(Elements.equal)
 
-        assert self.get_text(Elements.value_memory) == "1 × 2 - 3 + 1 ="
-        assert self.get_text(Elements.calc_result) == "0"
+    def check_memory_result(self):
+        assert self.get_text(
+            Elements.value_memory) == "1 × 2 - 3 + 1 =", f"Значение {self.get_text(Elements.value_memory)} в памяти калькулятора не равно 1 × 2 - 3 + 1 ="
+
+    def check_expression_result(self):
+        assert self.get_text(Elements.calc_result) == "0", f"Результат вычисления {self.get_text(Elements.calc_result)} не равен 0"

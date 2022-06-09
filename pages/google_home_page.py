@@ -14,5 +14,6 @@ class GoogleHomePage(BasePage):
         self.fill(Elements.search_input, value)
 
     def click_on_search_btn(self):
+        self.wait_visible(Elements.submit_btn, 30)
         self.click(Elements.submit_btn)
         self.wait_visible(CaclElements.number1)
